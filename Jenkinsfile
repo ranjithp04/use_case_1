@@ -5,7 +5,6 @@ def repo = "use_case_1"
 def buildNode = "x.x.x.x"
 def supportedBranches = ['master']
 def github_url = 'https://github.com'
-def artifactory_url = "http://x.x.x.x:8082/artifactory/generic-local/"
 
 node(buildNode) {
     def changedDirs
