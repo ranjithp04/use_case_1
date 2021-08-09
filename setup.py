@@ -5,8 +5,11 @@ OPTIONS = {
 	'argv_emulation': True,
 }
 
-setup(
-	app=APP,
-	options={'py2app': OPTIONS},
-	setup_requires=['py2app']
-)
+def for_mac(build_number,name):
+	setup(
+		name=name,
+		version=build_number,
+		app=APP,
+		options={'py2app': OPTIONS},
+		setup_requires=['py2app']
+	)
