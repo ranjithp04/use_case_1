@@ -54,8 +54,7 @@ node(buildNode) {
         }else{
             try {
                 print  "Going to build package for ${env.BRANCH_NAME} branch"
-                sh "python3 setup.py"
-                sh "mv dist/helloworld.app helloworld_${BUILD_NUMBER}_${BUILD_ID}.app"
+                sh "python3 build.py mac ${BUILD_ID}"
                 isBuilt = 'success'            
             } catch(Exception e){
                 echo 'ERROR: Something failed! please check below error message '
@@ -69,8 +68,7 @@ node(buildNode) {
         if(isBuilt== 'success'){
             try {
             if(env.BRANCH_NAME == 'master'){
-            	//sample from jfrog doc.
-            	sh "jfrog rt u helloworld_${BUILD_NUMBER}_${BUILD_ID}.app my-repository/my/new/artifact/directory/ --user=myUser --password=myP455w0rd!"
+            	sh "python3 build.py upload ${BUILD_ID}"
             }
                 buildDeployed = 'success'
             } catch(Exception e){
